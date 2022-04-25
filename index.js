@@ -1,15 +1,16 @@
 // TODO: Include packages needed for this application
-const fs = require('fs');
 const inquirer = require('inquirer');
-const generateMarkdown = require('./src/generateMarkdown');
+const fs = require('fs');
+
+const generateMarkdown = require('./src/generateMarkdown.js');
 // TODO: Create an array of questions for user input
 const questions = ["What is the name of your project?", "Write a description for your project.", "Steps required to install your project", "Provide examples for use.", "Give credits.", "List liscense if applicable."];
 const [projectName, projectDescription, steps, useExamples, credits, liscense ] = questions;
 
 // TODO: Create a function to write README file
-// const mdFile = generateMarkdown(data);
+ const mdFile = generateMarkdown();
 
-fs.writeFile('README.md', generateMarkdown(), err => {
+fs.writeFile('README.md', mdFile, err => {
     if (err) throw (err);
 
     console.log('Your professional README file has been generated!');
@@ -20,39 +21,40 @@ const init = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'title',
+            name: "title",
             message: projectName
         },
         {
             type: 'input',
-            name: 'description',
+            name: "description",
             message: projectDescription
         },
         {
             type: 'input',
-            name: 'steps',
+            name: "steps",
             message: steps
         },
         {
             type: 'input',
-            name: 'examples',
+            name: "examples",
             message: useExamples
         },
         {
             type: 'input',
-            name: 'credits',
+            name: "credits",
             message: credits
         },
         {
             type: 'input',
-            name: 'liscense',
+            name: "liscense",
             message: liscense
         }
-    ]);
+    ])
+    
 };
 
 // Function call to initialize app
  init()
- .then(data => {
-     console.log(data)
- });
+ .then(userData => {
+    console.log(userData);
+});
