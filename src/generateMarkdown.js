@@ -2,6 +2,8 @@
 // If there is no license, return an empty string
 // const renderLicenseBadge = license => {
 
+const { title } = require("process");
+
 
 
 // TODO: Create a function that returns the license link
@@ -17,7 +19,7 @@
 // TODO: Create a function to generate markdown for README
 const generateMarkdown = (userData) => {
   return `
-  # ${userData.title}
+  # ${userData.projectTitle}
 
   ## Description
 

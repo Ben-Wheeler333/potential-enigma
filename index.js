@@ -8,20 +8,23 @@ const questions = ["What is the name of your project?", "Write a description for
 const [projectName, projectDescription, steps, useExamples, credits, liscense ] = questions;
 
 // TODO: Create a function to write README file
- const mdFile = generateMarkdown();
+const writeMdFile = (userData) => {
+    const mdFile = generateMarkdown();
 
 fs.writeFile('README.md', mdFile, err => {
     if (err) throw (err);
 
     console.log('Your professional README file has been generated!');
 });
+}
+ 
 
 // TODO: Create a function to initialize app
 const init = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: "title",
+            name: "projectTitle",
             message: projectName
         },
         {
@@ -56,5 +59,9 @@ const init = () => {
 // Function call to initialize app
  init()
  .then(userData => {
+     writeMdFile(userData);
     console.log(userData);
+    
+
 });
+
